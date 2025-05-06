@@ -1,0 +1,56 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get version from tag
+        id: get_version
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Validate manifest version
+        run: |
+          MANIFEST_VERSION=$(grep -o '"version": "[^"]*"' manifest.json | cut -d'"' -f4)
+          if [ "$VERSION" != "$MANIFEST_VERSION" ]; then
+            echo "::error::Version mismatch! Tag version ($VERSION) does not match manifest.json version ($MANIFEST_VERSION)"
+            exit 1
+          fi
+
+      - name: Create ZIP package
+        run: |
+          mkdir -p /tmp/hoymiles_dtu
+          mkdir -p /tmp/hoymiles_dtu/custom_components
+          cp -r custom_components/hoymiles_dtu /tmp/hoymiles_dtu/custom_components/
+          cd /tmp/hoymiles_dtu
+          zip -r ../hoymiles_dtu.zip custom_components
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Hoymiles DTU v${{ env.VERSION }}
+          body: |
+            # Hoymiles Plant DTU-Pro v${{ env.VERSION }}
+            
+            Home Assistant integration for Hoymiles DTU-Pro device.
+            
+            ## Installation
+            
+            Install through HACS or manually by downloading this release.
+          files: |
+            /tmp/hoymiles_dtu.zip
+          draft: false
+          prerelease: false
