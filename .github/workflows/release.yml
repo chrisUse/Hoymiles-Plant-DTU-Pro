@@ -35,8 +35,8 @@ jobs:
           mkdir -p /tmp/hoymiles_dtu_pro
           mkdir -p /tmp/hoymiles_dtu_pro/custom_components
           cp -r custom_components/hoymiles_dtu_pro /tmp/hoymiles_dtu_pro/custom_components/
-          cd /tmp/hoymiles_dtu_pro
-          zip -r ../hoymiles_dtu_pro.zip custom_components
+          cd /tmp/hoymiles_dtu_pro/custom_components/hoymiles_dtu_pro
+          zip -r ../hoymiles_dtu_pro.zip .
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
