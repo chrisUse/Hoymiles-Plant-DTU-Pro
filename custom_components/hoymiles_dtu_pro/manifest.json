@@ -1,5 +1,5 @@
 {
-  "domain": "hoymiles_dtu",
+  "domain": "hoymiles_dtu_pro",
   "name": "Hoymiles Plant DTU-Pro",
   "documentation": "https://github.com/chrisUse/Hoymiles-Plant-DTU-Pro",
   "requirements": ["plum-py>=0.8.6"],

@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 # Konfiguration
 SOURCE_DIR = '.'
-TARGET_DIR = './custom_components/hoymiles_dtu'
+TARGET_DIR = './custom_components/hoymiles_dtu_pro'
 HOYMILES_SOURCE = './hoymiles'
 HOYMILES_TARGET = f'{TARGET_DIR}/hoymiles'
 

@@ -42,13 +42,13 @@ After adding a custom repository you can use HACS to install this integration us
 
 ### Manual
 
-To install this integration manually you have to download [*hoymiles_dtu.zip*](https://github.com/ArekKubacki/Hoymiles-Plant-DTU-Pro/releases/latest/download/hoymiles_dtu.zip) and extract its contents to `config/custom_components/hoymiles_dtu` directory:
+To install this integration manually you have to download [*hoymiles_dtu_pro.zip*](https://github.com/ArekKubacki/Hoymiles-Plant-DTU-Pro/releases/latest/download/hoymiles_dtu.zip) and extract its contents to `config/custom_components/hoymiles_dtu_pro` directory:
 ```bash
-mkdir -p custom_components/hoymiles_dtu
-cd custom_components/hoymiles_dtu
-wget https://github.com/ArekKubacki/Hoymiles-Plant-DTU-Pro/releases/latest/download/hoymiles_dtu.zip
-unzip hoymiles_dtu.zip
-rm hoymiles_dtu.zip
+mkdir -p custom_components/hoymiles_dtu_pro
+cd custom_components/hoymiles_dtu_pro
+wget https://github.com/ArekKubacki/Hoymiles-Plant-DTU-Pro/releases/latest/download/hoymiles_dtu_pro.zip
+unzip hoymiles_dtu_pro.zip
+rm hoymiles_dtu_pro.zip
 ```
 
 ## Configuration options
@@ -93,7 +93,7 @@ rm hoymiles_dtu.zip
 
 ```yaml
 sensor:
-  - platform: hoymiles_dtu
+  - platform: hoymiles_dtu_pro
     host: 192.168.x.xxx
     name: Hoymiles PV
     dtu_type: 0
